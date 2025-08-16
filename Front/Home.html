@@ -12,6 +12,17 @@
             background: #fff;
             color: #222;
         }
+
+        .navbar a {
+        color: white;
+        text-decoration: none;  /* no underline normally */
+        }
+
+        .navbar a:hover {
+        color: #ddd;            /* optional: slight color change on hover */
+        text-decoration: none;  /* <-- make sure underline never shows */
+        }
+
         .navbar {
             background: #0074f9;
             color: #fff;
@@ -100,16 +111,19 @@
             margin-top: -20px;
         }
         .brand-title {
-            font-family: 'Kavoon', cursive;
             font-size: 96px;
-            color: #0074f9;
+            font-weight: bold;
+            font-family: 'Karantina', cursive;
+            color: #2563eb;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
             margin: 0;
-            display: inline-block;
         }
         .brand-title .bold {
-            font-family: 'Kavoon', cursive; /* Changed from Montserrat to Kavoon */
-            color: #000;
             font-weight: bold;
+            font-family: 'Karantina', cursive;
+            color: #333;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+            margin: 0;
         }
         .action-row {
             margin-top: 30px;
@@ -302,11 +316,11 @@
 </head>
 <body>
     <div class="navbar">
-        <div class="nav-item Home"><img class="icon" src="assets/icons8-home-144.png" alt="Home" href="home.html">Home</div>
-        <div class="nav-item"><img class="icon" src="assets/icons8-usd-80.png" alt="Prices">Prices</div>
-        <div class="nav-item"><img class="icon" src="assets/icons8-cart-64.png" alt="Cart">Cart</div>
-        <div class="nav-item"><img class="icon" src="assets/icons8-handshake-64.png" alt="Clients">Clients</div>
-        <div class="nav-item" href="./help.html"><img class="icon" src="assets/icons8-help-80.png" alt="Help">Help</div>
+        <a class="nav-item Home" href="Home.html"><img class="icon" src="assets/icons8-home-144.png" alt="Home" href="home.html">Home</a>
+        <a class="nav-item" href="prices.html"><img class="icon" src="assets/icons8-usd-80.png" alt="Prices">Prices</a>
+        <a class="nav-item" href=""><img class="icon" src="assets/icons8-cart-64.png" alt="Cart">Cart</a>
+        <a class="nav-item" href=""><img class="icon" src="assets/icons8-handshake-64.png" alt="Clients">Clients</a>
+        <a class="nav-item" href="./help.html"><img class="icon" src="assets/icons8-help-80.png" alt="Help">Help</a>
         <div class="spacer"></div>
         <button class="btn">Login</button>
         <button class="btn signup">Sign up</button>

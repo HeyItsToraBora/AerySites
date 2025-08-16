@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prices - Aery Sites</title>
+             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Montserrat:700|Kavoon&display=swap">
+             <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karantina:400,700&display=swap"><style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar a {
+        color: white;
+        text-decoration: none;  /* no underline normally */
+        }
+
+        .navbar a:hover {
+        color: #ddd;            /* optional: slight color change on hover */
+        text-decoration: none;  /* <-- make sure underline never shows */
+        }
+
+        .navbar {
+            background: #0074f9;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            height: 78px;
+            font-size: 20px;
+            font-family: 'Montserrat', Arial, sans-serif;
+            
+        }
+
+        .navbar .nav-item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-right: 160px;
+            position: relative; /* Needed for the underline */
+            overflow: hidden;
+        }
+
+        .navbar .nav-item::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        height: 3px;
+        width: 0;
+        background: #ffffff;
+        transition: width 0.3s cubic-bezier(.4,0,.2,1);
+        border-radius: 2px;
+        }
+
+        .navbar .nav-item:hover::after {
+        width: 100%;
+        }
+
+        .Home{
+            margin-left: 160px;
+        }
+        
+        .navbar .nav-item img.icon {
+            width: 48px;   /* set your desired width */
+            height: 48px;  /* set your desired height */
+            margin-right: 7px;
+        }
+        
+        .navbar .nav-item:last-child {
+            margin-right: 0;
+        }
+        .navbar img.icon {
+            width: 22px;
+            height: 22px;
+            margin-right: 7px;
+        }
+        .navbar .spacer {
+            flex: 1;
+        }
+        .navbar .btn {
+            background: #fff;
+            color: #0074f9;
+            border: none;
+            border-radius: 8px;
+            padding: 4px 18px;
+            margin-left: 8px;
+            font-size: 24px;
+            cursor: pointer;
+            font-family: 'Kavoon', cursive;
+        }
+        .navbar .btn.signup {
+            background: none;
+            color: #fff;
+            border: 1.5px solid #fff;
+            margin-right: 30px;
+        }
+        
+        .nav-item{
+            font-family: 'Karantina', cursive;
+            font-size: 48px;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow: visible;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+
+        .page-title {
+            font-size: 64px;
+            font-weight: bold;
+            font-family: 'Karantina', cursive;
+            margin-bottom: 10px;
+            color: #2563eb;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+
+        .page-title .aery {
+            color: #2563eb;
+        }
+
+        .page-title .sites {
+            color: #333;
+        }
+
+        /* Controls Section */
+        .controls-section {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e5e7eb;
+            text-align: center;
+            width: 60%;       /* makes it 60% of the page width */
+            max-width: 500px; /* caps it at 500px wide */
+            margin: 0 auto;
+            margin-bottom: 50px; 
+        }
+
+        .controls-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 25px;
+            font-family: 'Karantina', cursive;
+        }
+
+        .controls-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2563eb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .control-select {
+            padding: 12px 20px;
+            border: 3px solid #2563eb;
+            border-radius: 25px;
+            background: white;
+            font-size: 16px;
+            font-weight: bold;
+            color: #2563eb;
+            cursor: pointer;
+            min-width: 180px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .control-select:focus {
+            outline: none;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+            transform: scale(1.05);
+        }
+
+        .control-select:hover {
+            background: #f8faff;
+            transform: translateY(-2px);
+        }
+
+        .control-select option {
+            font-size: 28px;
+            font-family: 'Luckiest Guy', cursive;
+            color: #2563eb;
+            background: rgb(255, 255, 255);
+            padding: 10px;
+        }
+
+        /* Duration Tabs */
+        .duration-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .duration-tab {
+            padding: 12px 25px;
+            border: 3px solid #e5e7eb;
+            border-radius: 25px;
+            background: white;
+            font-size: 16px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .duration-tab:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .duration-tab.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+            box-shadow: 0 5px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Pricing Plans Container */
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px 0 40px 0;
+        }
+
+        /* Pricing Card */
+        .pricing-card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border: 3px solid #e5e7eb;
+            position: relative;
+            transition: all 0.4s ease;
+            width: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.2);
+            border-color: #2563eb;
+        }
+
+        /* Plan Header */
+        .plan-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .plan-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 15px;
+            font-family: 'Karantina', cursive;
+            text-transform: uppercase;
+        }
+
+        .plan-price {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .plan-period {
+            font-size: 16px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .plan-savings {
+            background: #10b981;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* Features List */
+        .features-list {
+            list-style: none;
+            margin-bottom: 35px;
+            max-height: 500px;
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* Internet Explorer 10+ */
+        }
+        
+        .features-list::-webkit-scrollbar {
+            display: none; /* WebKit */
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: #f8faff;
+            border-radius: 10px;
+            margin: 0 -10px;
+            padding: 12px 10px;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            width: 28px;
+            height: 28px;
+            margin-right: 15px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .feature-check {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 3px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .feature-cross {
+            background: #e5e7eb;
+            color: #9ca3af;
+        }
+
+        .feature-text {
+            font-size: 16px;
+            color: #333;
+            flex: 1;
+            font-weight: 600;
+        }
+
+        .feature-item.unavailable {
+            opacity: 0.5;
+        }
+
+        .feature-item.unavailable .feature-text {
+            text-decoration: line-through;
+        }
+
+        /* Checkout Button */
+        .checkout-btn {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 18px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .checkout-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 0 15px;
+            }
+
+            .page-title {
+                font-size: 48px;
+            }
+
+            .pricing-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .pricing-card {
+                padding: 25px 20px;
+            }
+
+            .plan-price {
+                font-size: 36px;
+            }
+
+            .controls-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .controls-section {
+                padding: 20px;
+            }
+
+            .duration-tabs {
+                gap: 10px;
+            }
+
+            .duration-tab {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 36px;
+            }
+        }
+
+        /* For larger screens, ensure grid spans full width */
+        @media (min-width: 1400px) {
+            .main-container {
+                max-width: 100%;
+                padding: 0 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+        <!--navbar-->
+        <div class="navbar">
+            <a class="nav-item Home" href="Home.html"><img class="icon" src="assets/icons8-home-144.png" alt="Home" href="home.html">Home</a>
+            <a class="nav-item" href="prices.html"><img class="icon" src="assets/icons8-usd-80.png" alt="Prices">Prices</a>
+            <a class="nav-item" href=""><img class="icon" src="assets/icons8-cart-64.png" alt="Cart">Cart</a>
+            <a class="nav-item" href=""><img class="icon" src="assets/icons8-handshake-64.png" alt="Clients">Clients</a>
+            <a class="nav-item" href="./help.html"><img class="icon" src="assets/icons8-help-80.png" alt="Help">Help</a>
+            <div class="spacer"></div>
+            <button class="btn">Login</button>
+            <button class="btn signup">Sign up</button>
+        </div>
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">
+                <span class="aery">Aery</span> <span class="sites">Sites</span>
+            </h1>
+        </div>
+
+        <!-- Controls Section -->
+        <div class="controls-section">
+            <h2 class="controls-title">Choose Your Currency</h2>
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label class="control-label">Currency</label>
+                    <select class="control-select" id="currency">
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                        <option value="JPY">JPY (¥)</option>
+                        <option value="CAD">CAD (C$)</option>
+                        <option value="AUD">AUD (A$)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Duration Selection Tabs -->
+        <div class="duration-tabs">
+            <div class="duration-tab" data-duration="1">1 Month</div>
+            <div class="duration-tab" data-duration="3">3 Months</div>
+            <div class="duration-tab" data-duration="6">6 Months</div>
+            <div class="duration-tab active" data-duration="12">1 Year</div>
+            <div class="duration-tab" data-duration="lifetime">Lifetime</div>
+        </div>
+
+        <!-- Pricing Plans -->
+        <div class="pricing-container" id="pricingContainer">
+            <!-- Plans will be dynamically generated here -->
+        </div>
+    </div>
+
+    <script src="prices.js"></script>
+</body>
+</html>
