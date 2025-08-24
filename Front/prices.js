@@ -39,7 +39,8 @@
             '📞 Option 17',
             '💰 Option 18',
             '👥 Option 19',
-            '👑 Option 20'
+            '👑 Option 20',
+            'option zee'
         ];
 
         // Plan definitions with feature availability
