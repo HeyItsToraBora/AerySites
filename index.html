@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aery Sites</title>
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Montserrat:700|Kavoon&display=swap">
+         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karantina:400,700&display=swap">
+    <style>
+         body {
+        margin: 0;
+        font-family: 'Montserrat', Arial, sans-serif;
+        background: #fff;
+        color: #222;
+        }
+
+
+
+        /* Navbar links */
+        .navbar a {
+        color: white;
+        text-decoration: none;
+        }
+
+        .navbar a:hover {
+        color: #ddd;
+        text-decoration: none;
+        }
+
+        /* Navbar container */
+        .navbar {
+        background: #0074f9;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        height: 78px;
+        font-family: 'Montserrat', Arial, sans-serif;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        position: relative;
+        }
+
+        /* Nav items */
+        .navbar .nav-item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        /* Reduced maximum margin from 160px to 60px */
+        margin-right: clamp(8px, 8px + (60 - 8) * (100vw - 768px) / (1200 - 768), 160px);
+        position: relative;
+        flex-shrink: 0;
+        white-space: nowrap;
+        }
+
+        .navbar .nav-item::after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        height: 3px;
+        width: 0;
+        background: #ffffff;
+        transition: width 0.3s cubic-bezier(.4,0,.2,1);
+        border-radius: 2px;
+        }
+
+        .navbar .nav-item:hover::after {
+        width: 100%;
+        }
+
+        /* First item spacing */
+        .Home {
+        /* Reduced maximum margin from 160px to 60px */
+        margin-left: clamp(8px, 8px + (60 - 8) * (100vw - 768px) / (1200 - 768), 160px);
+        }
+
+        /* Icon sizes */
+        .navbar .nav-item img.icon {
+        width: 48px;
+        height: 48px;
+        margin-right: 7px;
+        flex-shrink: 0;
+        }
+
+        .navbar .nav-item:last-child {
+        margin-right: 0;
+        }
+
+        .navbar img.icon {
+        width: 22px;
+        height: 22px;
+        margin-right: 7px;
+        }
+
+        /* Flexible spacer */
+        .navbar .spacer {
+        flex: 1;
+        }
+
+        /* Buttons */
+        .navbar .btn {
+        background: #fff;
+        color: #0074f9;
+        border: none;
+        border-radius: 8px;
+        padding: 4px 18px;
+        margin-left: 8px;
+        font-size: 24px;
+        cursor: pointer;
+        font-family: 'Kavoon', cursive;
+        flex-shrink: 0;
+        white-space: nowrap;
+        }
+
+        .navbar .btn.signup {
+        background: none;
+        color: #fff;
+        border: 1.5px solid #fff;
+        margin-right: 30px;
+        }
+
+        /* Nav text */
+        .nav-item {
+        font-family: 'Karantina', cursive;
+        font-size: 48px;
+        }
+
+        /* Hamburger menu (hidden by default) */
+        .hamburger {
+        display: none;
+        font-size: 32px;
+        cursor: pointer;
+        }
+
+        /* Logo for mobile */
+        .mobile-logo {
+        display: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Karantina', cursive;
+        font-size: 36px;
+        font-weight: bold;
+        z-index: 10;
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+
+        .mobile-logo .aery {
+        color: white;
+        }
+
+        .mobile-logo .sites {
+        color: black;
+        }
+
+        /* Sidebar menu */
+        .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: #0074f9;
+        overflow-x: hidden;
+        transition: 0.3s;
+        padding-top: 60px;
+        z-index: 1000;
+        }
+
+        .sidebar a {
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        color: white;
+        text-decoration: none;
+        font-size: 28px;
+        font-family: 'Karantina', cursive;
+        font-weight: 400;
+        transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar a img.icon {
+        width: 32px;
+        height: 32px;
+        margin-right: 15px;
+        flex-shrink: 0;
+        }
+
+        .sidebar .btn {
+        background: #fff;
+        color: #0074f9;
+        margin: 15px 20px;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        font-size: 22px;
+        font-family: 'Kavoon', cursive;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        }
+
+        .sidebar .btn:hover {
+        background: #f0f0f0;
+        transform: translateY(-2px);
+        }
+
+        .sidebar .btn.signup {
+        background: none;
+        color: #fff;
+        border: 2px solid #fff;
+        }
+
+        .sidebar .btn.signup:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+        }
+
+        /* Button container for side-by-side layout */
+        .sidebar .button-container {
+        display: flex;
+        justify-content: space-between;
+        margin: 15px 20px;
+        gap: 10px;
+        }
+
+        .sidebar .button-container .btn {
+        flex: 1;
+        margin: 0;
+        text-align: center;
+        }
+
+        .sidebar .closebtn {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        font-size: 36px;
+        color: white;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        }
+
+        .sidebar .closebtn:hover {
+        color: #ddd;
+        }
+
+        /* ------------------- RESPONSIVE ------------------- */
+
+        /* Large tablets / small laptops */
+        @media (max-width: 1200px) {
+        .navbar .nav-item { 
+            margin-right: 45px; 
+        }
+        .Home { 
+            margin-left: 45px; 
+        }
+        .nav-item { 
+            font-size: 36px; 
+        }
+        .navbar .nav-item img.icon { 
+            width: 36px; 
+            height: 36px; 
+        }
+        .navbar .btn { 
+            font-size: 18px; 
+            padding: 3px 12px; 
+            margin-left: 4px;
+        }
+        .navbar .btn.signup { 
+            margin-right: 20px; 
+        }
+        }
+
+        /* Medium tablets */
+        @media (max-width: 1024px) {
+        .navbar .nav-item { 
+            margin-right: 35px; 
+        }
+        .Home { 
+            margin-left: 35px; 
+        }
+        .nav-item { 
+            font-size: 28px; 
+        }
+        .navbar .nav-item img.icon { 
+            width: 38px; 
+            height: 38px; 
+        }
+        .navbar .btn { 
+            font-size: 16px; 
+            padding: 3px 10px; 
+            margin-left: 3px;
+        }
+        .navbar .btn.signup { 
+            margin-right: 15px; 
+        }
+        }
+
+        /* Small tablets */
+        @media (max-width: 920px) {
+        .navbar .nav-item { 
+            margin-right: 25px; 
+        }
+        .Home { 
+            margin-left: 25px; 
+        }
+        .nav-item { 
+            font-size: 24px; 
+        }
+        .navbar .nav-item img.icon { 
+            width: 24px; 
+            height: 24px; 
+        }
+        .navbar .btn { 
+            font-size: 14px; 
+            padding: 2px 8px; 
+            margin-left: 2px;
+        }
+        .navbar .btn.signup { 
+            margin-right: 10px; 
+        }
+        }
+
+        /* Very small tablets */
+        @media (max-width: 840px) {
+        .navbar .nav-item { 
+            margin-right: 15px; 
+        }
+        .Home { 
+            margin-left: 15px; 
+        }
+        .nav-item { 
+            font-size: 20px; 
+        }
+        .navbar .nav-item img.icon { 
+            width: 20px; 
+            height: 20px; 
+        }
+        .navbar .btn { 
+            font-size: 12px; 
+            padding: 2px 6px; 
+            margin-left: 2px;
+        }
+        .navbar .btn.signup { 
+            margin-right: 5px; 
+        }
+        }
+
+        /* Extra small */
+        @media (max-width: 800px) {
+        .navbar .nav-item { 
+            margin-right: 10px; 
+        }
+        .Home { 
+            margin-left: 10px; 
+        }
+        .nav-item { 
+            font-size: 18px; 
+        }
+        .navbar .nav-item img.icon { 
+            width: 18px; 
+            height: 18px; 
+        }
+        .navbar .btn { 
+            font-size: 11px; 
+            padding: 2px 5px; 
+            margin-left: 1px;
+        }
+        .navbar .btn.signup { 
+            margin-right: 5px; 
+        }
+        }
+
+        /* Mobile - hide everything and show hamburger */
+        @media (max-width: 768px) {
+        .navbar .nav-item,
+        .navbar .btn,
+        .Home {
+            display: none;
+        }
+        .hamburger { 
+            display: block; 
+        }
+        .mobile-logo {
+            display: block;
+        }
+        }
+
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 60px;
+        }
+        .logo-img {
+            width: 130px;
+            margin-bottom: 10px;
+            margin-top: -20px;
+        }
+        .brand-title {
+            font-size: 96px;
+            font-weight: bold;
+            font-family: 'Karantina', cursive;
+            color: #2563eb;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+            margin: 0;
+        }
+        .brand-title .bold {
+            font-weight: bold;
+            font-family: 'Karantina', cursive;
+            color: #333;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+            margin: 0;
+        }
+        .action-row {
+            margin-top: 30px;
+            display: flex;
+            gap: 18px;
+        }
+        .action-btn {
+            background: #fff;
+            color: #0074f9;
+            border: 2px solid #0074f9;
+            border-radius: 8px;
+            font-size: 32px;
+            font-family: 'Kavoon', cursive;
+            padding: 10px 24px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .action-btn:hover {
+            background: #0074f9;
+            color: #fff;
+        }
+        .main-btn {
+            margin-top: 22px;
+            background: #0074f9;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 26px;
+            font-family: 'Luckiest Guy', cursive;
+            padding: 14px 48px 14px 28px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #0074f933;
+        }
+        .main-btn .arrow {
+            position: absolute;
+            right: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 38px;
+        }
+        .footer-bar {
+            position: fixed;
+            bottom: 28px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .footer-bar .contact-label {
+            font-family: 'Luckiest Guy', cursive;
+            color: #0074f9;
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+        .footer-bar .contact-row {
+            background: #0074f9;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            padding: 16px 38px;
+            min-width: 340px;
+        }
+        .footer-bar .contact-icon {
+            width: 32px;
+            height: 32px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer-bar .contact-icon img {
+            width: 32px;
+            height: 32px;
+        }
+        @media (max-width: 600px) {
+            .brand-title { font-size: 32px; }
+            .main-btn { font-size: 18px; padding: 10px 32px 10px 18px; }
+            .footer-bar .contact-row { gap: 22px; min-width: 180px; padding: 10px 10px; }
+            .footer-bar .contact-icon img { width: 32px; height: 32px; }
+        }
+        .footer-bar .contact-row {
+        background: #0074f9;
+        border-radius: 14px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px; /* Adjusted for better spacing */
+        padding: 16px 38px;
+        min-width: 340px;
+        }
+        .footer-bar .contact-icon img {
+            width: 44px;
+            height: 44px;
+        }
+
+        .nav-item{
+            font-family: 'Karantina', cursive;
+            font-size: 48px;
+        }
+
+        .brand-slider-container {
+        width: 100%;
+        overflow: hidden;
+        margin: 60px 0 40px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0px;
+        border-bottom: 160px;
+        }
+        .brand-slider {
+            width: 80vw;
+            max-width: 1100px;
+            overflow: hidden;
+            position: relative;
+            height: 80px;
+            background: #f7faff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px #0074f91a;
+            display: flex;
+            align-items: center;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
+        }
+        .brand-slide-track {
+            display: flex;
+            width: calc(200px * 10); /* 10 logos, adjust if you add more */
+            animation: scrollBrands 18s linear infinite;
+        }
+        .brand-logo {
+            width: 140px;
+            height: 60px;
+            object-fit: contain;
+            margin: 0 30px;
+            filter: grayscale(0.2) brightness(0.95);
+            transition: filter 0.2s;
+        }
+        .brand-logo:hover {
+            filter: none;
+        }
+        @keyframes scrollBrands {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @media (max-width: 700px) {
+            .brand-slider { height: 48px; }
+            .brand-logo { width: 80px; height: 32px; margin: 0 12px; }
+            .brand-slide-track { width: calc(100px * 10); }
+        }
+
+        .brand-slider::before,
+        .brand-slider::after {
+            content: "";
+            position: absolute;
+            top: 0; bottom: 0;
+            width: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .brand-slider::before {
+            left: 0;
+            background: linear-gradient(to right, #f7faff 0%, transparent 100%);
+        }
+        .brand-slider::after {
+            right: 0;
+            background: linear-gradient(to left, #f7faff 0%, transparent 100%);
+        }
+
+        .trusted-label {
+            text-align: center;
+            font-family: 'Luckiest Guy', cursive;
+            font-size: 32px;
+            color: #0074f9;
+            margin-bottom: -30px;
+            margin-top: 80px;
+            font-weight: bold;
+        }
+        @media (max-width: 700px) {
+            .trusted-label {
+                font-size: 22px;
+                margin-top: 24px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+  <!-- navbar -->
+  <div class="navbar">
+    <a class="nav-item Home" href="Home.html"><img class="icon" src="https://img.icons8.com/color/144/home.png" alt="Home">Home</a>
+    <a class="nav-item" href="prices.html"><img class="icon" src="https://img.icons8.com/color/80/us-dollar-circled.png" alt="Prices">Prices</a>
+    <a class="nav-item" href="#"><img class="icon" src="https://img.icons8.com/color/64/shopping-cart.png" alt="Cart">Cart</a>
+    <a class="nav-item" href="#"><img class="icon" src="https://img.icons8.com/color/64/handshake.png" alt="Clients">Clients</a>
+    <a class="nav-item" href="./help.html"><img class="icon" src="https://img.icons8.com/color/80/help.png" alt="Help">Help</a>
+    <div class="spacer"></div>
+    <button class="btn">Login</button>
+    <button class="btn signup">Sign up</button>
+
+    <!-- Mobile Logo (visible only on mobile) -->
+    <div class="mobile-logo" class="brand-title">
+      <span class="aery">Aery</span>
+      <span class="sites">Sites</span>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="hamburger" onclick="toggleSidebar()">☰</div>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleSidebar()">×</a>
+    <a href="Home.html">
+      <img class="icon" src="https://img.icons8.com/color/144/home.png" alt="Home">
+      Home
+    </a>
+    <a href="prices.html">
+      <img class="icon" src="https://img.icons8.com/color/80/us-dollar-circled.png" alt="Prices">
+      Prices
+    </a>
+    <a href="#">
+      <img class="icon" src="https://img.icons8.com/color/64/shopping-cart.png" alt="Cart">
+      Cart
+    </a>
+    <a href="#">
+      <img class="icon" src="https://img.icons8.com/color/64/handshake.png" alt="Clients">
+      Clients
+    </a>
+    <a href="help.html">
+      <img class="icon" src="https://img.icons8.com/color/80/help.png" alt="Help">
+      Help
+    </a>
+    <div class="button-container">
+      <button class="btn">Login</button>
+      <button class="btn signup">Sign up</button>
+    </div>
+  </div>
+ <div class="center-content">
+        <img class="logo-img" src="assets/1.png" alt="Aery Sites Logo">
+        <h1 class="brand-title">Aery <span class="bold">Sites</span></h1>
+        <div class="action-row">
+            <button class="action-btn">Our clients</button>
+            <button class="action-btn">Start now</button>
+        </div>
+        <button class="main-btn">
+            My Purchases 
+            <span class="arrow">></span>
+        </button>
+    </div>
+
+    <div class="trusted-label">Trusted by</div>
+
+    <div class="brand-slider-container">
+    <div class="brand-slider">
+        <div class="brand-slide-track">
+            <img src="assets/brand1.png" alt="Brand 1" class="brand-logo">
+            <img src="assets/brand2.png" alt="Brand 2" class="brand-logo">
+            <img src="assets/brand3.png" alt="Brand 3" class="brand-logo">
+            <img src="assets/brand4.png" alt="Brand 4" class="brand-logo">
+            <img src="assets/brand5.png" alt="Brand 5" class="brand-logo">
+            <!-- Repeat logos for seamless loop -->
+            <img src="assets/brand1.png" alt="Brand 1" class="brand-logo">
+            <img src="assets/brand2.png" alt="Brand 2" class="brand-logo">
+            <img src="assets/brand3.png" alt="Brand 3" class="brand-logo">
+            <img src="assets/brand4.png" alt="Brand 4" class="brand-logo">
+            <img src="assets/brand5.png" alt="Brand 5" class="brand-logo">
+            <!-- متنساش تحط لوجوهات -->
+        </div>
+    </div>
+</div>
+
+    <div class="footer-bar">
+        <div class="contact-label">Contact us</div>
+        <div class="contact-row">
+            <button class="contact-icon"><img src="assets/icons8-twitter-100.png" alt="Gamepad"></button>
+            <button class="contact-icon"><img src="assets/icons8-instagram-64.png" alt="Instagram"></button>
+            <button class="contact-icon"><img src="assets/icons8-whatsapp-100.png" alt="WhatsApp"></button>
+            <button class="contact-icon"><img src="assets/email.png" alt="Mail"></button>
+        </div>
+    </div>
+</body>
+
+<script src="Home.js"></script>
+</html>
